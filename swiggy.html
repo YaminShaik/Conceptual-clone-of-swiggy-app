@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy Clone - Food Delivery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #282c3f;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .header {
+            background-color: white;
+            box-shadow: 0 1px 4px 0 rgba(40, 44, 63, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 15px 0;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            padding: 10px 15px;
+            font-weight: 500;
+            color: #3d4152;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link i {
+            margin-right: 8px;
+        }
+
+        .cart {
+            color: #fc8019;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            background-color: #fc8019;
+            color: white;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 2px 0 0 2px;
+            font-size: 1rem;
+        }
+
+        .locate-btn {
+            background: white;
+            color: #fc8019;
+            border: none;
+            padding: 0 20px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .find-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 30px;
+            font-weight: 600;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+
+        .popular-cities {
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cities {
+            font-weight: 500;
+        }
+
+        .restaurants {
+            padding: 60px 0;
+            background: #f8f8f8;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #282c3f;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .restaurant-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .restaurant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #256fef;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 2px;
+        }
+
+        .delivery-time {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .restaurant-info {
+            padding: 15px;
+        }
+
+        .restaurant-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .cuisine {
+            color: #686b78;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .restaurant-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e9e9eb;
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: #3d9b6d;
+            font-weight: 600;
+        }
+
+        .price {
+            color: #686b78;
+        }
+
+        .app-download {
+            background: #2b1e16;
+            color: white;
+            padding: 60px 0;
+        }
+
+        .app-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-text {
+            max-width: 500px;
+        }
+
+        .app-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .app-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #e0cbc1;
+        }
+
+        .download-buttons img {
+            height: 50px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .app-images {
+            display: flex;
+        }
+
+        .phone-image {
+            height: 300px;
+            margin-left: -50px;
+        }
+
+        .phone-image:first-child {
+            margin-left: 0;
+        }
+
+        .footer {
+            background: #000;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #bebfc5;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #fc8019;
+        }
+
+        .app-store img {
+            height: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid #4d4d4d;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 20px;
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            color: #bebfc5;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box input,
+            .locate-btn,
+            .find-btn {
+                width: 100%;
+                border-radius: 2px;
+                margin-bottom: 5px;
+            }
+
+            .app-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .app-text {
+                margin-bottom: 30px;
+            }
+
+            .app-images {
+                justify-content: center;
+            }
+
+            .phone-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .restaurant-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-image {
+                height: 200px;
+                margin-left: -30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png " alt="Swiggy Logo"
+                    width="80">
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link"><i class="fas fa-search"></i> Search</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-offer"></i> Offers</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-question-circle"></i> Help</a></li>
+                    <li><a href="#" class="nav-link"><i class="fas fa-user"></i> Sign In</a></li>
+                    <li><a href="#" class="nav-link cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hungry?</h1>
+                <h2>Order food from favourite restaurants near you.</h2>
+                <h2>Dont stop your cravings anymore. </h2>
+                <div class="search-box">
+                    <input type="text" placeholder="Enter your delivery location">
+                    <button class="locate-btn"><i class="fas fa-crosshairs"></i> Locate Me</button>
+                    <button class="find-btn">FIND FOOD</button>
+                </div>
+                <p class="popular-cities">POPULAR CITIES IN INDIA</p>
+                <p class="cities">
+                    Ahmedabad Bangalore Chennai Delhi Gurgaon Hyderabad Kolkata Mumbai Pune & more.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="restaurants">
+        <div class="container">
+            <h2 class="section-title">Restaurants near you</h2>
+            <div class="restaurant-grid">
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <img src=https://nobulleconomics.com/wp-content/uploads/2024/08/Burger-King-Sizzle-Building.png
+                            alt="Burger King">
+                        <div class="offer-badge">50% OFF</div>
+                        <div class="delivery-time">38 min</div>
+                    </div>
+                    <div class="restaurant-info">
+                        <h3>Burger King</h3>
+                        <div class="cuisine">Burgers, American</div>
+                        <div class="restaurant-footer">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.2
+                            </div>
+                            <div class="price">₹200 FOR TWO</div>
+                        </div>
+                    </div> 
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcYJiqn0zdEzBuKrs19Mk58ywSq89GnvnT8Q&s
+                            alt="Pizza Hut">
+                        <div class="offer-badge">40% OFF</div>
+                        <div class="delivery-time">25 min</div>
+                    </div>
+                    <div class="restaurant-info">
+                        <h3>Pizza Hut</h3>
+                        <div class="cuisine">Pizzas, Italian</div>
+                        <div class="restaurant-footer">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.0
+                            </div>
+                            <div class="price">₹300 FOR TWO</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1kxSLrtOuiT2--UsEWbH_UvfHAHiFlr3xaQ&s
+                            alt="Biryani Blues">
+                        <div class="offer-badge">30% OFF</div>
+                        <div class="delivery-time">35 min</div>
+                    </div>
+                    <div class="restaurant-info">
+                        <h3>Biryani Blues</h3>
+                        <div class="cuisine">Biryani, Hyderabadi</div>
+                        <div class="restaurant-footer">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.5
+                            </div>
+                            <div class="price">₹250 FOR TWO</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-image">
+                        <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV34BeIx-it1HS7SQP92FBRSBPVLoAtVEjWw&s
+                            alt="McDonald's">
+                        <div class="offer-badge">25% OFF</div>
+                        <div class="delivery-time">30 min</div>
+                    </div>
+                    <div class="restaurant-info">
+                        <h3>McDonald's</h3>
+                        <div class="cuisine">Burgers, Fast Food</div>
+                        <div class="restaurant-footer">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.1
+                            </div>
+                            <div class="price">₹150 FOR TWO</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="app-download">
+        <div class="container">
+            <div class="app-content">
+                <div class="app-text">
+                    <h2>Restaurants in your pocket</h2>
+                    <p>Order from your favorite restaurants & track on the go, with the all-new Swiggy app.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>COMPANY</h4>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Swiggy Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>CONTACT</h4>
+                    <ul>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="#">Ride with us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>LEGAL</h4>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Refund & Cancellation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column app-store">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSADMTEo4YEurEn-gXFBOfumKYAJMviq-T9ww&s alt="
+                        Google Play">
+                    <img src=https://img.favpng.com/8/23/25/app-store-apple-google-play-png-favpng-qTUNaPD0snEWx1GLan4dZPdae.jpg
+                        alt="App Store">
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

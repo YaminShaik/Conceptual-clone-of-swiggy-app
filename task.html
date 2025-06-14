@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiggy App - Shaik Yamin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding-bottom: 70px;
+        }
+        
+        .container {
+            max-width: 375px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+        
+        header {
+            background-color: #FF5722;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 16px;
+        }
+        
+        .search-bar ion-icon {
+            color: #FF5722;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-weight: 500;
+            color: #777;
+        }
+        
+        .nav-tab.active {
+            color: #FF5722;
+            border-bottom: 2px solid #FF5722;
+        }
+        
+        .content {
+            padding: 15px 0;
+        }
+        
+        .section-title {
+            margin: 15px 0 10px;
+            font-weight: 600;
+            font-size: 18px;
+
+        
+        }
+        
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .restaurant-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            
+        }
+        
+        .restaurant-img {
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+
+        }
+        
+        .restaurant-info {
+            padding: 8px;
+        }
+        
+        .restaurant-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .restaurant-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #777;
+        }
+        
+        .footer-item ion-icon {
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+        
+        .footer-item.active {
+            color: #FF5722;
+        }
+        
+        .user-info {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 15px;
+        }
+        
+        .user-details h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .user-details p {
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .badge {
+            background: #FF5722;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form action="./login.html"></form>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Swiggy</div>
+            <div class="user-actions">
+                <ion-icon name="notifications-outline"></ion-icon>
+                <span class="badge">3</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="search-bar">
+            <ion-icon name="search-outline"></ion-icon>
+            <input type="text" placeholder="Search for restaurants and food">
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active">For You</div>
+            <div class="nav-tab">Categories</div>
+            <div class="nav-tab">Orders</div>
+        </div>
+        
+        <div class="content">
+            <div class="user-info">
+                <div class="user-avatar" style="background-image: url('https://picsum.photos/seed/user123/100/100.jpg');"></div>
+                <div class="user-details">
+                    <h3>Hi, Shaik Yamin</h3>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Popular Restaurants</h2>
+            <div class="restaurant-grid">
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2CMj4dws9lfOvuR3An368kyNRfyiQVQkhOw&s);"></div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Pizza </div>
+                        <div class="restaurant-details">
+                            <span>4.5 ★</span>
+                            <span>30-40 min</span>
+                            <span>200/-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_IGV5NPqV4PfaZ1QBwhJPE_9ouB0zMehZng&s);"></div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Burger</div>
+                        <div class="restaurant-details">
+                            <span>4.2 ★</span>
+                            <span>25-35 min</span>
+                            <span>150/-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url('https://w7.pngwing.com/pngs/379/288/png-transparent-chicken-biryani-thumbnail.png');"></div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Biryanis</div>
+                        <div class="restaurant-details">
+                            <span>4.3 ★</span>
+                            <span>35-45 min</span>
+                            <span>250/-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url(https://png.pngtree.com/png-vector/20240322/ourmid/pngtree-instant-fried-noodles-png-image_12178744.png);"></div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">Noodles</div>
+                        <div class="restaurant-details">
+                            <span>4.0 ★</span>
+                            <span>20-30 min</span>
+                            <span>100-150/-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Recommended for You</h2>
+            <div class="restaurant-grid">
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url(https://toppng.com/uploads/preview/cold-drinks-2lt-cool-drinks-images-115628511849erk9ca1lw.png );"></div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">cool drinks</div>
+                        <div class="restaurant-details">
+                            <span>4.4 ★</span>
+                            <span>25-35 min</span>
+                            <span>20-100/-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-card">
+                    <div class="restaurant-img" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjjA5a5Q1Ln21qZtSqwKxuAZyqDD2NfPZR3g&s);"></div>
+                    <div class="restaurant-info">
+                        <div class="restaurant-name">shawarma</div>
+                        <div class="restaurant-details">
+                            <span>4.1 ★</span>
+                            <span>30-40 min</span>
+                            <span>100-150/-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer-item active">
+            <ion-icon name="home"></ion-icon>
+            <span>Home</span>
+        </div>
+        <div class="footer-item">
+            <ion-icon name="search"></ion-icon>
+            <span>Search</span>
+        </div>
+        <div class="footer-item">
+            <ion-icon name="list"></ion-icon>
+            <span>Orders</span>
+        </div>
+        <div class="footer-item">
+            <ion-icon name="card"></ion-icon>
+            <span>Wallet</span>
+        </div>
+        <div class="footer-item">
+            <ion-icon name="person"></ion-icon>
+            <span>Profile</span>
+        </div>
+    </div>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
